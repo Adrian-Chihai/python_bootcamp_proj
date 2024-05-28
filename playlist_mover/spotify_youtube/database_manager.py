@@ -2,7 +2,7 @@ import sqlite3
 
 class DatabaseManager:
     def __init__(self):
-        self.db_name = ":memory:"  # You can modify this to use a file-based database
+        self.db_name = ":memory:"
         self._connection = None
 
     def get_connection(self):

@@ -66,7 +66,7 @@ class YoutubeTool:
                 print(f"An HTTP error {e.resp.status} occurred: {e.content}")
                 if e.resp.status in [500, 503]:
                     print(f"Retrying... ({attempt + 1}/{max_retries})")
-                    time.sleep(2 ** attempt)  # Exponential backoff
+                    time.sleep(2 ** attempt)
                 else:
                     raise
         raise Exception(f"Failed to add video ID {video_id} to playlist ID {playlist_id} after {max_retries} attempts")
@@ -78,13 +78,13 @@ class YoutubeTool:
         print(f"Playlist ID: {playlist_id}")
 
         songs = self.db_manager.get_all_songs()
-        print("Songs to be added:", songs)  # Debug print
+        print("Songs to be added:", songs)
 
         not_found_songs = []
 
         for song in songs:
             if len(song) != 3:
-                print(f"Unexpected song format: {song}")  # Handle unexpected format
+                print(f"Unexpected song format: {song}")
                 continue
             artist, title, album = song
             query = f"{artist} {title} {album}"

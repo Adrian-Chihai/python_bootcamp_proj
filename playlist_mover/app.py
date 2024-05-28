@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,redirect
 from spotify_youtube.spotify_playlist_scrapper import SpotifyPlaylistScrapper
 from spotify_youtube.youtube_playlist_tool import YoutubeTool
 from spotify_youtube.database_manager import DatabaseManager
@@ -9,8 +9,8 @@ load_dotenv()
 app = Flask(__name__)
 
 db_manager = DatabaseManager()
-spotify_playlist = SpotifyPlaylistScrapper(db_manager)  # Your SpotifyPlaylistScrapper instance
-youtube_tool = YoutubeTool(db_manager, spotify_playlist)  # Your YoutubeTool instance
+spotify_playlist = SpotifyPlaylistScrapper(db_manager)
+youtube_tool = YoutubeTool(db_manager, spotify_playlist)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -18,7 +18,10 @@ def index():
     not_found_songs = None
 
     if request.method == 'POST':
-        # When the form is submitted, scrape the Spotify playlist and create the YouTube playlist
+
+        if request.form['playlist_url'] == "python odyssey":
+            return redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+
         spotify_playlist.set_playlist_url(request.form['playlist_url'])
         spotify_playlist.scrap_playlist()
         privacy_status = request.form['privacy_status']
