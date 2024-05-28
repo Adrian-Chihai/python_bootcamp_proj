@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Playlist Conversion Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Playlist Conversion Result</h1>
+        <p>Playlist ID: {{ playlist_id }}</p>
+
+        <h2>Not Found Songs:</h2>
+        <ul>
+            {% for song in not_found_songs %}
+                <li>{{ song }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="/">Convert Another Playlist</a>
+    </div>
+</body>
+</html>

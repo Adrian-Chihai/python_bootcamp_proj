@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify to YouTube Playlist Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Spotify to YouTube Playlist Converter</h1>
+        <form action="{{ url_for('index') }}" method="POST">
+            <label for="playlist_url">Spotify Playlist URL:</label>
+            <input type="text" id="playlist_url" name="playlist_url" required>
+            <br><br>
+            <div class="privacy-status-group">
+                <label for="public">Privacy Status:</label>
+                <input type="radio" id="public" name="privacy_status" value="public" required>
+                <label for="public">Public</label>
+                <input type="radio" id="private" name="privacy_status" value="private" required>
+                <label for="private">Private</label>
+            </div>
+            <button type="submit" class="button">Create YouTube Playlist</button>
+        </form>
+    </div>
+</body>
+</html>
